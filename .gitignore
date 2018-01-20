@@ -3,6 +3,7 @@ log/
 target/
 .mvn/
 .DS_Store
+.m2/
 
 ### IntelliJ IDEA ###
 .idea
