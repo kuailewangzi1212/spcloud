@@ -3,21 +3,61 @@ spcloud
 
 说明
 
-# Screenshots
+# eureka
+
+eureka是一个服务注册和发现模块,包括两部分server和client,server端核心是提供了自动维护的服务注册表，供服务提供者注册服务和消费端发现服务。
+ 
+ **1.server**
+ * **依赖**
+         
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+    
+ * **注解**
+ 在工程的启动类中,通过@EnableEurekaServer注意EurekaServer
+       
+ * **配置**
+ 
+        server:
+          port: 8761
+        
+        eureka:
+          instance:
+            hostname: 10.211.55.5
+          client:
+            registerWithEureka: false
+            fetchRegistry: false
+            serviceUrl:
+              defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+          server:
+            enable-self-preservation: false
 
 
-# Features
-* **统一管理不同环境、不同集群的配置**
-  * Apollo提供了一个统一界面集中式管理不同环境（environment）、不同集群（cluster）、不同命名空间（namespace）的配置。
-  * 同一份代码部署在不同的集群，可以有不同的配置，比如zk的地址等
-  * 通过命名空间（namespace）可以很方便的支持多个不同应用共享同一份配置，同时还允许应用对共享的配置进行覆盖
+**2.client**
+ * **依赖**
+         
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+    
+ * **注解**
+ 在工程的启动类中,通过@EnableEurekaClient
+       
+ * **配置**
 
-* **配置修改实时生效（热发布）**
-  * 用户在Apollo修改完配置并发布后，客户端能实时（1秒）接收到最新的配置，并通知到应用程序。
-
+        eureka:
+          client:
+            serviceUrl:
+              defaultZone: http://10.211.55.5:8761/eureka/
+          instance:
+            prefer-ip-address: true 
+ 
 # eureka-ribbon
 
-ribbon是一个负载均衡客户端，Feign默认集成了ribbon
+ribbon和Feign都是服务消费者,ribbon是一个负载均衡客户端，Feign默认集成了ribbon,Feign增加了一些工具类，使Ribbon使用起来更加方便。
  * **依赖**
          
         <dependency>
