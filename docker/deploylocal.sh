@@ -2,7 +2,7 @@
 #!chmod +x ./deploylocal.sh
 #./deploylocal.sh -a eureka-server -b 8761 -c 8761 -d eureka-server
 #./deploylocal.sh -a eureka-client -b 8762 -c 8762 -d eureka-client
-#./deploylocal.sh -a eureka-client -b 8762 -c 8763 -d eureka-client1
+#./deploylocal.sh -a eureka-client -b 8763 -c 8763 -d eureka-client1
 #./deploylocal.sh -a eureka-ribbon -b 8764 -c 8764 -d eureka-ribbon
 
 
@@ -70,7 +70,8 @@ rm Dockerfile
 echo FROM java:8-jre >> Dockerfile
 echo MAINTAINER mark mark '<115504218@qq.com>' >> Dockerfile
 echo ADD $a-0.0.1-SNAPSHOT.jar /app/ >> Dockerfile
-echo CMD '["java", "-Xmx200m", "-jar", "/app/'$a'-0.0.1-SNAPSHOT.jar"]' >> Dockerfile
+#echo 'RUN /bin/echo -e "export SERVER_PORT='$b'" >> /etc/profile' >> Dockerfile
+echo CMD '["java", "-Xmx200m", "-jar", "/app/'$a'-0.0.1-SNAPSHOT.jar","--server.port='$b'"]' >> Dockerfile
 echo EXPOSE $b >> Dockerfile
 
 echo send dockerfile
