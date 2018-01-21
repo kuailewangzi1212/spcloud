@@ -55,7 +55,7 @@ eureka是一个服务注册和发现模块,包括两部分server和client,server
           instance:
             prefer-ip-address: true 
  
-# eureka-ribbon
+# ribbon
 
 ribbon和Feign都是服务消费者,ribbon是一个负载均衡客户端，Feign默认集成了ribbon,Feign增加了一些工具类，使Ribbon使用起来更加方便。
  * **依赖**
@@ -87,3 +87,31 @@ ribbon和Feign都是服务消费者,ribbon是一个负载均衡客户端，Feign
          spring:
            application:
              name: service-ribbon
+             
+             
+# Feign
+
+Feign是一个声明式的伪Http客户端,它使得写Http客户端变得更简单,Feign默认集成了Ribbon,默认实现了客户端负载均衡
+
+
+ * **依赖**
+       
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>       
+    
+ * **注解**
+ 
+       
+ * **配置**
+ 
+                   

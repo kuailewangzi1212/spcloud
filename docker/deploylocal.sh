@@ -4,6 +4,7 @@
 #./deploylocal.sh -a eureka-client -b 8762 -c 8762 -d eureka-client
 #./deploylocal.sh -a eureka-client -b 8763 -c 8763 -d eureka-client1
 #./deploylocal.sh -a eureka-ribbon -b 8764 -c 8764 -d eureka-ribbon
+#./deploylocal.sh -a eureka-feign -b 8765 -c 8765 -d eureka-feign
 
 
 echo a:程序的名称

@@ -1,0 +1,12 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.211.55.5:8761/eureka/
+  instance:
+      prefer-ip-address: true
+
+server:
+  port: 8765
+spring:
+  application:
+    name: service-feign
