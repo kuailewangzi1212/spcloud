@@ -158,11 +158,8 @@ Feign是一个声明式的伪Http客户端,它使得写Http客户端变得更简
 hystrix实现了超时机制和断路器机制。负载均衡在不改变程序的前提下，通过增加硬件或改变部署方式，实现应用并发数量的横向扩展达到高可用、高并发。hystrix的超时机制和断路器机制解决应用在异常情况下的高可用。
 
  * **依赖**
- Feign是自带断路器的，在低版本的Spring Cloud中，它没有默认打开。需要在配置文件中配置打开它，在配置文件加以下代码
-
-        feign.hystrix.enabled=true 
  
- 在Ribbon中增加断路器需要增加下面的依赖
+ 加入依赖(Ribbon和Feign都要引入)
  
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -170,7 +167,7 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
         </dependency>       
 
 
- 如果要加入断路器仪表盘，则需要引入下列依赖(Ribbon和Fegiin都要引入)
+ 如果要加入断路器仪表盘，则需要引入下列依赖(Ribbon和Feign都要引入)
  
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -186,20 +183,25 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
            
  * **注解**
  
- 在启动类上增加@EnableHystrix注解开启Hystrix。
- 增加@EnableHystrixDashboard注解，开启Hystrix仪表盘
+ Ribbon 上增加的注解：@EnableHystrix和@EnableHystrixDashboard
+ Feign 上增加的注解：@EnableHystrixDashboard和@EnableCircuitBreaker
        
  * **配置**
  
- 配置参考Ribbon和Fegin.
+  Feign是自带断路器的，在低版本的Spring Cloud中，它没有默认打开。需要在配置文件中配置打开它，在配置文件加以下代码(此处是个大坑,没有自动提示功能，还以为是版本的问题，直接加上去就OK了)
+ 
+         feign:
+           hystrix:
+             enabled: true 
         
+  Ribbon配置不需要修改
  
  * **Usage**   
  
  在Service方法上加上@HystrixCommand注解。该注解对该方法创建了熔断器的功能，并指定了fallbackMethod熔断方法
   
    **1、service**
-   * **Ribbon**
+   * **Ribbon service 改造**
 
         @Autowired
         RestTemplate restTemplate;
@@ -213,9 +215,22 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
             return "hi"+name+",sorry ,i am Hiystrix!";
         }       
         
-   * **Fegin**
-   
-                 
+   * **Fegin service 改造**
+
+        @FeignClient(value = "service-client",fallback = SchedualServiceHiHystrix.class)
+        public interface SchedualServiceHi {
+        
+            @RequestMapping(value = "/hi",method = RequestMethod.GET)
+            String sayHiFromClientOne(@RequestParam(value = "name") String name);
+        }   
+           
+           
+        public class SchedualServiceHiHystrix implements HelloService.SchedualServiceHi {
+            @Override
+            public String sayHiFromClientOne(String name) {
+                return "sorry "+name+",I am hystrix";
+            }
+        }                 
    **2、controller**    
-    
+    无需调整
                      

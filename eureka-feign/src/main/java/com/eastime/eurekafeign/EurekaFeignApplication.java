@@ -22,10 +22,5 @@ public class EurekaFeignApplication {
 		SpringApplication.run(EurekaFeignApplication.class, args);
 	}
 
-	@Bean
-	@LoadBalanced
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 }
 

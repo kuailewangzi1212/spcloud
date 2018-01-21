@@ -6,6 +6,7 @@
 #./deploylocal.sh -a eureka-ribbon -b 8764 -c 8764 -d eureka-ribbon
 #./deploylocal.sh -a eureka-feign -b 8765 -c 8765 -d eureka-feign
 #./deploylocal.sh -a eureka-ribbon-hystrix -b 8766 -c 8766 -d eureka-ribbon-hystrix
+#./deploylocal.sh -a eureka-feign-hystrix -b 8767 -c 8767 -d eureka-feign-hystrix
 
 
 echo a:程序的名称
@@ -56,6 +57,8 @@ IP=10.211.55.5
 
 echo web update
 cd $BASE_PATH
+
+mvn clean install
 
 
 
