@@ -1,6 +1,9 @@
 #!/bin/bash
 #!chmod +x ./deploylocal.sh
+#./deploylocal.sh -a eureka-server -b 8761 -c 8761 -d eureka-server
 #./deploylocal.sh -a eureka-client -b 8762 -c 8762 -d eureka-client
+#./deploylocal.sh -a eureka-client -b 8762 -c 8763 -d eureka-client1
+#./deploylocal.sh -a eureka-ribbon -b 8764 -c 8764 -d eureka-ribbon
 
 
 echo a:程序的名称
