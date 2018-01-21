@@ -37,8 +37,9 @@ rm Dockerfile
 echo FROM java:8-jre >> Dockerfile
 echo MAINTAINER mark mark '<115504218@qq.com>' >> Dockerfile
 echo ADD $1-0.0.1-SNAPSHOT.jar /app/ >> Dockerfile
-echo CMD '["java", "-Xmx200m", "-jar", "/app/'$1'-0.0.1-SNAPSHOT.jar"]' >> Dockerfile
+echo CMD '["java", "-Xmx200m", "-jar", "/app/$1-0.0.1-SNAPSHOT.jar"]' >> Dockerfile
 echo EXPOSE $2 >> Dockerfile
+
 
 echo send dockerfile
 sshpass -p "mxhzmm123!@#" scp -P 22 $BASE_PATH_PJ/Dockerfile $REMOTE_PATH/Dockerfile
@@ -46,7 +47,7 @@ sshpass -p "mxhzmm123!@#" scp -P 22 $BASE_PATH_PJ/Dockerfile $REMOTE_PATH/Docker
 echo create redocker.sh
 cd $BASE_PATH_PJ
 rm redocker.sh
-echo docker rm -f '$('docker ps -a -f name=$1 -q')' >> redocker.sh
+echo docker rm -f '$('docker ps -f name=$1 -q')' >> redocker.sh
 echo docker rmi $1 >> redocker.sh
 echo docker build -t $1:latest . >> redocker.sh
 echo docker run --name $1 -d -p $2:$2 $1:latest >> redocker.sh

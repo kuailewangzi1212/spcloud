@@ -1,0 +1,10 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.211.55.5:8761/eureka/
+
+server:
+  port: 8762
+spring:
+  application:
+    name: service-client
