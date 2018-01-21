@@ -184,6 +184,7 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
  * **注解**
  
  Ribbon 上增加的注解：@EnableHystrix和@EnableHystrixDashboard
+ 
  Feign 上增加的注解：@EnableHystrixDashboard和@EnableCircuitBreaker
        
  * **配置**
@@ -202,35 +203,37 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
   
    **1、service**
    * **Ribbon service 改造**
-
+    <pre>
         @Autowired
         RestTemplate restTemplate;
-        
         @HystrixCommand(fallbackMethod = "hiError")
         public String hiService(String name) {
             return restTemplate.getForObject("http://SERVICE-CLIENT/hi?name="+name,String.class);
-        }
-        
+        }        
         public String hiError(String name) {
             return "hi"+name+",sorry ,i am Hiystrix!";
-        }       
-        
+        }               
+    </pre> 
+      
    * **Fegin service 改造**
-
-        @FeignClient(value = "service-client",fallback = SchedualServiceHiHystrix.class)
-        public interface SchedualServiceHi {
-        
-            @RequestMapping(value = "/hi",method = RequestMethod.GET)
-            String sayHiFromClientOne(@RequestParam(value = "name") String name);
-        }   
-           
-           
-        public class SchedualServiceHiHystrix implements HelloService.SchedualServiceHi {
+   
+   <pre>
+        @Service
+        public class HelloService {        
+            @FeignClient(value = "service-client",fallback = SchedualServiceHiHystric.class)
+            public interface SchedualServiceHi {        
+                @RequestMapping(value = "/hi",method = RequestMethod.GET)
+                String sayHiFromClientOne(@RequestParam(value = "name") String name);
+            }
+        }        
+        @Component
+        public class SchedualServiceHiHystric implements HelloService.SchedualServiceHi {
             @Override
             public String sayHiFromClientOne(String name) {
-                return "sorry "+name+",I am hystrix";
+                return "sorry "+name;
             }
-        }                 
+        }
+      </pre>
    **2、controller**    
     无需调整
                      
