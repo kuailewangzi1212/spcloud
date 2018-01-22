@@ -416,5 +416,36 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
     
 
  **2、自动刷新**
+ * **rabbitMq docker 安装**
+
+        docker pull rabbitmq:3-management
+        docker run --name rabbitmq-west -d -p 15673:15672 rabbitmq:3-management   
+
  
+ * **依赖**
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+ 
+ * **注解**     
+ 
+    无
+        
+ * **配置**
+ 
+    增加下列配置
+ 
+        spring:  
+          rabbitmq:
+            host: 10.211.55.5
+            port: 15673
+
+ * **Usage**       
+ 
+    刷新其中一个节点的配置
+ 
+        curl -d "" http://10.211.55.5:8769/bus/refresh         
+        
                      

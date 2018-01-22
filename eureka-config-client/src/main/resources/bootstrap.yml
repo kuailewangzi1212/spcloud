@@ -36,11 +36,11 @@ spring:
 #    bus:
 #      trace:
 #        enabled: true
-#  rabbitmq:
-#    host: 10.211.55.5
-#    port: 15673
-#    username: guest
-#    password: guest
+  rabbitmq:
+    host: 10.211.55.5
+    port: 5671
+    username: guest
+    password: guest
 
 
 management:
