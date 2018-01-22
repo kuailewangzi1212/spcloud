@@ -265,4 +265,12 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
               serviceId: service-ribbon
             api-b:
               path: /api-b/**
-              serviceId: service-feign      
+              serviceId: service-feign    
+              
+
+ * **Usage**
+ 
+ 实现服务过滤，需要增加下列过滤器
+ 
+         @Component
+         public class MyFilter extends ZuulFilter                
