@@ -20,10 +20,10 @@ public class EurekaConfigClientApplication {
 
 
 	@Value("${test.name}")
-	String name;
+	String testname;
 
 	@RequestMapping("/hi")
 	public String home(@RequestParam String name) {
-		return "hi ,i am from config center";
+		return "hi "+name+",i from config center,i am "+testname;
 	}
 }

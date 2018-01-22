@@ -334,4 +334,12 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
               uri: http://10.211.55.5:8888/
               
 
- * **Usage**         
+ * **Usage** 
+ 
+ 资源与配置中心资源映射关系如下：
+ 
+        /{application}/{profile}[/{label}]
+        /{application}-{profile}.yml
+        /{label}/{application}-{profile}.yml
+        /{application}-{profile}.properties //测试通过，其他没有测试
+        /{label}/{application}-{profile}.properties        
