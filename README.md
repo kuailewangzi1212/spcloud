@@ -238,6 +238,27 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
     无需调整
 
 
+# Turbine
+
+集群监控，turbine与hystrix的却别，hystrix只能监控一个服务消费者终端的运行情况，Turbine可以监控多个服务消费者终端的运行情况，每一个消费者终端必须集成了hystrix
+
+ 
+ * **依赖**
+
+      
+ 
+ * **注解**     
+ 
+  
+        
+ * **配置**
+ 
+  
+
+ * **Usage**       
+ 
+     
+
 # Zuul
 
 路由转发和服务过滤
@@ -369,6 +390,7 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
         docker run --name rabbitmq-west -d -p 15673:15672 rabbitmq:3-management
 
  **2、config client **
+ 
  * **依赖**
 
         <dependency>
@@ -389,4 +411,8 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
             host: 10.211.55.5
             port: 15673
 
- * **Usage**                                
+ * **Usage**       
+ 
+    刷新其中一个节点的配置
+ 
+        curl -d "" http://10.211.55.5:8769/bus/refresh                         
