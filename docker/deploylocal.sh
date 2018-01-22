@@ -9,6 +9,7 @@
 #./deploylocal.sh -a eureka-feign-hystrix -b 8767 -c 8767 -d eureka-feign-hystrix
 #./deploylocal.sh -a eureka-zuul -b 8768 -c 8768 -d eureka-zuul
 #./deploylocal.sh -a eureka-config-server -b 8888 -c 8888 -d eureka-config-server
+#./deploylocal.sh -a eureka-config-server -b 8889 -c 8889 -d eureka-config-server1
 #./deploylocal.sh -a eureka-config-client -b 8769 -c 8769 -d eureka-config-client
 
 

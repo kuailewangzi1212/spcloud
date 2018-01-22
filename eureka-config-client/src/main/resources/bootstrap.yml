@@ -6,8 +6,23 @@ eureka:
     prefer-ip-address: true
 
 
+
 server:
   port: 8769
+
+
+# 连接到单点
+#spring:
+#  application:
+#    name: service-config-client
+#  cloud:
+#    config:
+#      label: master
+#      profile: dev
+#      uri: http://10.211.55.5:8888/ #链接单点配置中心
+
+
+# 连接到集群
 spring:
   application:
     name: service-config-client
@@ -15,4 +30,7 @@ spring:
     config:
       label: master
       profile: dev
-      uri: http://10.211.55.5:8888/
+      discovery:
+        service-id: service-config-server
+        enabled: true
+

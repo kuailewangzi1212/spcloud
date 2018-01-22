@@ -324,6 +324,18 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
         
  * **配置**
 
+        # 连接到单点
+        #spring:
+        #  application:
+        #    name: service-config-client
+        #  cloud:
+        #    config:
+        #      label: master
+        #      profile: dev
+        #      uri: http://10.211.55.5:8888/ #链接单点配置中心
+        
+        
+        # 连接到集群
         spring:
           application:
             name: service-config-client
@@ -331,7 +343,9 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
             config:
               label: master
               profile: dev
-              uri: http://10.211.55.5:8888/
+              discovery:
+                service-id: service-config-server
+                enabled: true
               
 
  * **Usage** 
