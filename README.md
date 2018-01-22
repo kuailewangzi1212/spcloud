@@ -356,7 +356,7 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
         #      uri: http://10.211.55.5:8888/ #链接单点配置中心
         
         
-        # 连接到集群
+        # 连接到集群（意义不大，因为微服务一旦启动,可以脱离config server 运行）
         spring:
           application:
             name: service-config-client
@@ -382,7 +382,7 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
 # Spring Cloud Bus
 
-配置刷新
+配置刷新,包括两部分内容，手动刷新单个节点和通过消息推送实现自动刷新整个集群
 
  **1、配置刷新**
 
@@ -450,4 +450,5 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
  
         curl -X POST http://localhost:8769/bus/refresh        
         
+   关于spring cloud config 的高可用，后续可以研究下 rabbitmq集群和私有git服务器集群。        
                      
