@@ -382,37 +382,39 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
 # Spring Cloud Bus
 
-消息总线
+配置刷新
 
- **1、rabbitMq docker 安装**
+ **1、配置刷新**
 
-        docker pull rabbitmq:3-management
-        docker run --name rabbitmq-west -d -p 15673:15672 rabbitmq:3-management
-
- **2、config client **
- 
  * **依赖**
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
- 
- * **注解**     
- 
-    无
-        
- * **配置**
- 
-    增加下列配置
- 
-        spring:  
-          rabbitmq:
-            host: 10.211.55.5
-            port: 15673
 
- * **Usage**       
+ * **注解**  
  
-    刷新其中一个节点的配置
+    在读取配置的Bean上加@RefreshScope注解，这里有个大坑，@RefreshScope和@Configuration最好不要同时注解在同一个Bean上，会出现意想不到的问题。  
+    
+        @RefreshScope
+     
+
+ * **配置**
+    
+   需要增加下面的配置
+
+        management:
+          security:
+            enabled: false 
+
+ * **Usage** 
  
-        curl -d "" http://10.211.55.5:8769/bus/refresh                         
+    手动刷新指令如下：
+    
+        curl -X POST http://10.211.55.5:8769/refresh
+    
+
+ **2、自动刷新**
+ 
+                     
