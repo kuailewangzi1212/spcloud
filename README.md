@@ -315,17 +315,23 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
  
  
- * **注解**
-
-        @EnableConfigServer
+ * **注解**      
         
         
  * **配置**
-          
+
+        spring:
+          application:
+            name: service-config-client
+          cloud:
+            config:
+              label: master
+              profile: dev
+              uri: http://10.211.55.5:8888/
               
 
  * **Usage**         

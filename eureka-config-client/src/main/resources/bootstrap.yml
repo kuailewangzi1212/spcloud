@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.211.55.5:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+server:
+  port: 8769
+spring:
+  application:
+    name: service-config-client
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://10.211.55.5:8888/

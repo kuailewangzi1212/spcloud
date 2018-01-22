@@ -19,6 +19,7 @@
 		<module>eureka-feign-hystrix</module>
 		<module>eureka-zuul</module>
 		<module>eureka-config-server</module>
+		<module>eureka-config-client</module>
 	</modules>
 
 
