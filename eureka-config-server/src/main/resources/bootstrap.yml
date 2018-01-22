@@ -1,0 +1,22 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.211.55.5:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+server:
+  port: 8888
+spring:
+  application:
+    name: service-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/kuailewangzi1212/spcloud/
+          search-paths: respo
+          username:
+          password:
+      label: master

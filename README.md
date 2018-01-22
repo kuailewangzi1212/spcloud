@@ -273,4 +273,59 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
  实现服务过滤，需要增加下列过滤器
  
          @Component
-         public class MyFilter extends ZuulFilter                
+         public class MyFilter extends ZuulFilter    
+         
+         
+# Spring Cloud Config
+
+分布式配置中心
+
+ **1、config server**
+
+
+ * **依赖**
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+ 
+ 
+ * **注解**
+
+        @EnableConfigServer
+        
+        
+ * **配置**
+          
+              
+
+ * **Usage**
+ 
+ 实现服务过滤，需要增加下列过滤器
+ 
+         @Component
+         public class MyFilter extends ZuulFilter                         
+         
+         
+
+
+ **2、config client**
+ * **依赖**
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+ 
+ 
+ * **注解**
+
+        @EnableConfigServer
+        
+        
+ * **配置**
+          
+              
+
+ * **Usage**         

@@ -52,7 +52,9 @@ public class PostFilter extends ZuulFilter {
         String username = request.getParameter("name");// 获取请求的参数
         ctx.setSendZuulResponse(true);
         ctx.setResponseStatusCode(200);
-        ctx.setResponseBody("{\"name\":\"change result:"+username+"\"}");// 输出最终结果
+        if(null != username && username.equals("filter")) {
+            ctx.setResponseBody("{\"name\":\"change result:" + username + "\"}");// 输出最终结果
+        }
         return null;
     }
 }
