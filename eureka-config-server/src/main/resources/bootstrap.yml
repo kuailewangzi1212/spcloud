@@ -16,7 +16,7 @@ spring:
       server:
         git:
           uri: https://github.com/kuailewangzi1212/spcloud/
-          search-paths: respo
+          search-paths: tree/master/eureka-config-server/src/main/resources
           username:
           password:
       label: master
