@@ -419,7 +419,7 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
  * **rabbitMq docker 安装**
 
         docker pull rabbitmq:3-management
-        docker run --name rabbitmq-west -d -p 15673:15672 rabbitmq:3-management   
+        docker run --name rabbitmq-west -d -p 15672:15672 -p 5672:5672 -p 25672:25672 rabbitmq:3-management   
 
  
  * **依赖**
@@ -435,17 +435,19 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
         
  * **配置**
  
-    增加下列配置
+    增加下列配置,port要设置为amqp的端口，从rabbitmq控制台可以查看端口，在创建容器时要暴露相应的端口。
  
         spring:  
           rabbitmq:
             host: 10.211.55.5
-            port: 15673
+            port: 5672
+            username: guest
+            password: guest
 
  * **Usage**       
  
     刷新其中一个节点的配置
  
-        curl -d "" http://10.211.55.5:8769/bus/refresh         
+        curl -X POST http://localhost:8769/bus/refresh        
         
                      
