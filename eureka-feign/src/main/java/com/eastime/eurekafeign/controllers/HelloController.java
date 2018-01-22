@@ -15,6 +15,7 @@ public class HelloController {
 
     @RequestMapping(value = "/hi",method = RequestMethod.GET)
     public String sayHi(@RequestParam String name){
+        name="feign:"+name;
         return schedualServiceHi.sayHiFromClientOne(name);
     }
 

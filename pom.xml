@@ -17,6 +17,7 @@
 		<module>eureka-ribbon-hystrix</module>
 		<module>eureka-feign</module>
 		<module>eureka-feign-hystrix</module>
+		<module>eureka-zuul</module>
 	</modules>
 
 

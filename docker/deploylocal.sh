@@ -7,7 +7,7 @@
 #./deploylocal.sh -a eureka-feign -b 8765 -c 8765 -d eureka-feign
 #./deploylocal.sh -a eureka-ribbon-hystrix -b 8766 -c 8766 -d eureka-ribbon-hystrix
 #./deploylocal.sh -a eureka-feign-hystrix -b 8767 -c 8767 -d eureka-feign-hystrix
-
+#./deploylocal.sh -a eureka-zuul -b 8768 -c 8768 -d eureka-zuul
 
 echo a:程序的名称
 echo b:程序的端口
