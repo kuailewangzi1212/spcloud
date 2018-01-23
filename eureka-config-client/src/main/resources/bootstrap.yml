@@ -39,9 +39,6 @@ spring:
     username: guest
     password: guest
 
-
-
-
 management:
   security:
     enabled: false

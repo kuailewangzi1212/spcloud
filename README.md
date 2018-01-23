@@ -278,6 +278,9 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
  * **Usage**       
    
+   在任何一个hytrix dashbord中展示
+   
+        http://10.211.55.5:8772/turbine.stream   
      
 
 # Zuul
@@ -541,16 +544,118 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
  * **依赖**
 
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui-login</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-turbine-stream</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>netty-transport-native-epoll</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>netty-codec-http</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
       
  
  * **注解**     
  
-  
+        @SpringBootApplication
+        @EnableDiscoveryClient
+        @EnableAdminServer
+        @EnableTurbineStream
         
  * **配置**
  
-  
+        eureka:
+          client:
+            serviceUrl:
+              defaultZone: http://10.211.55.5:8761/eureka/ #注册中心是单机
+          instance:
+            prefer-ip-address: true
+        
+        
+        server:
+          port: 6789
+        
+        turbine:
+          stream:
+            port: 6772
+        
+        spring:
+          application:
+            name: service-monitor
+          rabbitmq:
+            host: 10.211.55.5
+            port: 5672
+            username: guest
+            password: guest
+          boot:
+            admin:
+              routes:
+                endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,turbine.stream
+              turbine:
+                clusters: default
+                location: service-client-trubine
+        
+        
+        management:
+          security:
+            enabled: false
+        
+        logging:
+          level:
+            org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter: error
+        
+        
+        security:
+          user:
+            name: admin
+            password: admin
 
+
+  增加有关日志的配置，文件名称 logback-spring.xml,内容如下：
+  
+        <?xml version="1.0" encoding="UTF-8"?>
+        <configuration>
+            <include resource="org/springframework/boot/logging/logback/base.xml"/>
+            <jmxConfigurator/>
+        </configuration>
+  
  * **Usage**       
  
  

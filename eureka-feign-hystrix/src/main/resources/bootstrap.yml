@@ -11,6 +11,10 @@ spring:
   application:
     name: service-feign-hystrix
 
+management:
+  security:
+    enabled: false
+
 feign:
   hystrix:
     enabled: true

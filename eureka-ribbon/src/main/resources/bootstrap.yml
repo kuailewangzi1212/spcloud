@@ -10,3 +10,7 @@ server:
 spring:
   application:
     name: service-ribbon
+
+management:
+  security:
+    enabled: false

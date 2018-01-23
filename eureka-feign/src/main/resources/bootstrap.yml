@@ -10,3 +10,6 @@ server:
 spring:
   application:
     name: service-feign
+management:
+  security:
+    enabled: false

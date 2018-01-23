@@ -11,3 +11,6 @@ server:
 spring:
   application:
     name: service-client-hystrix
+management:
+  security:
+    enabled: false

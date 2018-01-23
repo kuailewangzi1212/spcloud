@@ -12,6 +12,10 @@ spring:
   application:
     name: service-zuul
 
+management:
+  security:
+    enabled: false
+
 zuul:
   routes:
     api-a:

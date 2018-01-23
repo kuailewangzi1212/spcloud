@@ -8,6 +8,38 @@ eureka:
 
 server:
   port: 6789
+
+turbine:
+  stream:
+    port: 6772
+
 spring:
   application:
     name: service-monitor
+  rabbitmq:
+    host: 10.211.55.5
+    port: 5672
+    username: guest
+    password: guest
+  boot:
+    admin:
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,turbine.stream
+      turbine:
+        clusters: default
+        location: service-client-trubine
+
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter: error
+
+
+security:
+  user:
+    name: admin
+    password: admin

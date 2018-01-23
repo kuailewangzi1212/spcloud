@@ -20,3 +20,6 @@ spring:
           username:
           password:
       label: master
+management:
+  security:
+    enabled: false

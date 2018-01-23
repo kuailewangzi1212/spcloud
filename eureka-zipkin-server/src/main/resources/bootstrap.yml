@@ -11,3 +11,7 @@ server:
 spring:
   application:
     name: service-zipkin-server
+
+management:
+  security:
+    enabled: false

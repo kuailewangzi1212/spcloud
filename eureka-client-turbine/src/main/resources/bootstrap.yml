@@ -11,8 +11,9 @@ server:
 spring:
   application:
     name: service-client-trubine
-
-
+management:
+  security:
+    enabled: false
 #security.basic.enabled: false
 #turbine:
 #  aggregator:
@@ -30,3 +31,4 @@ turbine:
     cluster-config: default
   app-config: service-client-hystrix,service-ribbon-hystrix
   cluster-name-expression: new String("default")
+
