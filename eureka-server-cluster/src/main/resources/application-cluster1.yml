@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: eureka-server-cluster
+  profiles:
+    active: cluster1
+
+server:
+  port: 9999
+
+eureka:
+  instance:
+    hostname: 10.211.55.5
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://10.211.55.5:9998/eureka/,http://10.211.55.5:9997/eureka/
+
+

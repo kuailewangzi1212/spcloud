@@ -12,6 +12,7 @@
 
 	<modules>
 		<module>eureka-server</module>
+		<module>eureka-server-cluster</module>
 		<module>eureka-client</module>
 		<module>eureka-ribbon</module>
 		<module>eureka-ribbon-hystrix</module>

@@ -19,6 +19,11 @@
 
 #./deploylocal.sh -a eureka-zipkin-server -b 8773 -c 8773 -d eureka-zipkin-server
 
+#高可用注册中心
+#./deploylocal.sh -a eureka-server-cluster -b 9999 -c 9999 -d eureka-server-cluster -e --spring.profiles.active=cluster1
+#./deploylocal.sh -a eureka-server-cluster -b 9998 -c 9998 -d eureka-server-cluster1 -e --spring.profiles.active=cluster2
+#./deploylocal.sh -a eureka-server-cluster -b 9997 -c 9997 -d eureka-server-cluster2 -e --spring.profiles.active=cluster3
+
 
 
 echo a:程序的名称
@@ -30,25 +35,29 @@ a=程序的名称
 b=程序的端口
 c=映射到docker宿主的端口
 d=docker相关的名字
+e=
 
-
-while getopts "a:,b:,c:,d:" opt; do
+while getopts "a:,b:,c:,d:,e:" opt; do
   case $opt in
     a)
       echo "this is -a the arg is ! $OPTARG"
       a=$OPTARG
       ;;
     b)
-      echo "this is -a the arg is ! $OPTARG"
+      echo "this is -b the arg is ! $OPTARG"
       b=$OPTARG
       ;;
     c)
-      echo "this is -a the arg is ! $OPTARG"
+      echo "this is -c the arg is ! $OPTARG"
       c=$OPTARG
       ;;
     d)
-      echo "this is -a the arg is ! $OPTARG"
+      echo "this is -d the arg is ! $OPTARG"
       d=$OPTARG
+      ;;
+    e)
+      echo "this is -e the arg is ! $OPTARG"
+      e=$OPTARG
       ;;
     \?)
       echo "参数不正确 $OPTARG"
@@ -86,8 +95,10 @@ echo FROM java:8-jre >> Dockerfile
 echo MAINTAINER mark mark '<115504218@qq.com>' >> Dockerfile
 echo ADD $a-0.0.1-SNAPSHOT.jar /app/ >> Dockerfile
 #echo 'RUN /bin/echo -e "export SERVER_PORT='$b'" >> /etc/profile' >> Dockerfile
-echo CMD '["java", "-Xmx200m", "-jar", "/app/'$a'-0.0.1-SNAPSHOT.jar","--server.port='$b'"]' >> Dockerfile
+#echo CMD '["java", "-Xmx200m", "-jar", "/app/'$a'-0.0.1-SNAPSHOT.jar","--server.port='$b' ' $e'"]' >> Dockerfile
+echo CMD java -Xmx200m -jar /app/$a-0.0.1-SNAPSHOT.jar --server.port=$b $e >> Dockerfile
 echo EXPOSE $b >> Dockerfile
+
 
 echo send dockerfile
 sshpass -p "mxhzmm123!@#" scp -P 22 $BASE_PATH_PJ/Dockerfile $REMOTE_PATH/Dockerfile

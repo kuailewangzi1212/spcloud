@@ -510,7 +510,9 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
             name: service-zipkin-server
   
 
- * **Usage**       
+ * **Usage**  
+    
+   遗留问题：zipkin集群没有找到方法 ，后续研究 
  
  **2、sleuth client**
   * **依赖**
@@ -551,3 +553,60 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
  * **Usage**       
  
+ 
+# 高可用Eureka Server部署
+
+ * **依赖**
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+      
+ 
+ * **注解**     
+ 
+        @EnableEurekaServer
+        
+ * **配置**
+ 
+   下面的配置集群配置,defaultZone,两两相连形成环。
+ 
+        spring:
+          application:
+            name: eureka-server-cluster
+          profiles:
+            active: cluster1
+        
+        server:
+          port: 9999
+        
+        eureka:
+          instance:
+            hostname: 10.211.55.5
+            prefer-ip-address: true
+          client:
+            serviceUrl:
+              defaultZone: http://10.211.55.5:9998/eureka/,http://10.211.55.5:9997/eureka/
+
+   对应的客户端配置如下,注意defaultZone
+   
+        eureka:
+          client:
+            serviceUrl:
+              defaultZone: http://10.211.55.5:9999/eureka/,http://10.211.55.5:9998/eureka/,http://10.211.55.5:9997/eureka/ #注册中心是集群       
+          instance:
+            prefer-ip-address: true
+        
+        
+        server:
+          port: 8762
+        spring:
+          application:
+            name: service-client
+          zipkin:
+            base-url: http://10.211.55.5:8773
+
+
+
+ * **Usage**   

@@ -1,7 +1,8 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.211.55.5:8761/eureka/
+      defaultZone: http://10.211.55.5:9999/eureka/,http://10.211.55.5:9998/eureka/,http://10.211.55.5:9997/eureka/ #注册中心是集群
+#      defaultZone: http://10.211.55.5:8761/eureka/ #注册中心是单机
   instance:
     prefer-ip-address: true
 
