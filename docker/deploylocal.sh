@@ -24,6 +24,7 @@
 #./deploylocal.sh -a eureka-server-cluster -b 9998 -c 9998 -d eureka-server-cluster1 -e --spring.profiles.active=cluster2
 #./deploylocal.sh -a eureka-server-cluster -b 9997 -c 9997 -d eureka-server-cluster2 -e --spring.profiles.active=cluster3
 
+#./deploylocal.sh -a eureka-monitor -b 6789 -c 6789 -d eureka-monitor
 
 
 echo a:程序的名称

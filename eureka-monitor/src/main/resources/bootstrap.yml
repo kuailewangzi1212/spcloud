@@ -1,0 +1,13 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.211.55.5:8761/eureka/ #注册中心是单机
+  instance:
+    prefer-ip-address: true
+
+
+server:
+  port: 6789
+spring:
+  application:
+    name: service-monitor
