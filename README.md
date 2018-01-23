@@ -473,17 +473,42 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
 服务链路追踪，跟踪服务消费者的消费路径，方便分析和查找问题。
 
- **1、sleuth server**
+
+ **1、sleuth zipkin server**
  * **依赖**
 
-      
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-server</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
+        </dependency>
  
  * **注解**     
  
+        @EnableZipkinServer
   
         
  * **配置**
  
+        server:
+          port: 8773
+        spring:
+          application:
+            name: service-zipkin-server
   
 
  * **Usage**       
