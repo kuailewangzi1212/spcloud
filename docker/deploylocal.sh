@@ -8,7 +8,7 @@
 #./deploylocal.sh -a eureka-client-hystrix -b 8771 -c 8771 -d eureka-client-hystrix
 #./deploylocal.sh -a eureka-ribbon-hystrix -b 8766 -c 8766 -d eureka-ribbon-hystrix
 #./deploylocal.sh -a eureka-feign-hystrix -b 8767 -c 8767 -d eureka-feign-hystrix
-
+#./deploylocal.sh -a eureka-client-turbine -b 8772 -c 8772 -d eureka-client-turbine
 
 #./deploylocal.sh -a eureka-zuul -b 8768 -c 8768 -d eureka-zuul
 #./deploylocal.sh -a eureka-config-server -b 8888 -c 8888 -d eureka-config-server

@@ -243,22 +243,41 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
 # Turbine
 
-集群监控，turbine与hystrix的却别，hystrix只能监控一个服务消费者终端的运行情况，Turbine可以监控多个服务消费者终端的运行情况，每一个消费者终端必须集成了hystrix
+集群监控，turbine与hystrix的区别，hystrix dashbord只能监控一个服务消费者终端的运行情况，Turbine可以监控多个服务消费者终端的运行情况，每一个消费者终端必须集成了hystrix
  
  * **依赖**
 
-      
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-turbine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-turbine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
  
  * **注解**     
+   Turbine自身集成了eureka的服务注册功能，@EnableTurbine注解包含了@EnableDiscoveryClient,在启动类里增加@EnableTurbine即可实现服务注册和发现功能
+ 
+        @EnableTurbine
  
   
         
  * **配置**
  
-  
+        turbine:
+          aggregator:
+            cluster-config: default
+          app-config: service-client-hystrix,service-ribbon-hystrix
+          cluster-name-expression: new String("default")
+
 
  * **Usage**       
- 
+   
      
 
 # Zuul

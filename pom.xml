@@ -21,6 +21,7 @@
 		<module>eureka-config-server</module>
 		<module>eureka-config-client</module>
 		<module>eureka-client-hystrix</module>
+		<module>eureka-client-turbine</module>
 	</modules>
 
 
