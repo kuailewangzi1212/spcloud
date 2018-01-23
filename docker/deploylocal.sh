@@ -17,6 +17,8 @@
 #./deploylocal.sh -a eureka-config-client -b 8770 -c 8770 -d eureka-config-client1
 #安装rabbitmq的docker指令 docker run --name rabbitmq-west -d -p 15672:15672 -p 5672:5672 -p 25672:25672 rabbitmq:3-management
 
+#./deploylocal.sh -a eureka-zipkin-server -b 8773 -c 8773 -d eureka-zipkin-server
+
 
 
 echo a:程序的名称
