@@ -5,14 +5,18 @@
 #./deploylocal.sh -a eureka-client -b 8763 -c 8763 -d eureka-client1
 #./deploylocal.sh -a eureka-ribbon -b 8764 -c 8764 -d eureka-ribbon
 #./deploylocal.sh -a eureka-feign -b 8765 -c 8765 -d eureka-feign
+#./deploylocal.sh -a eureka-client-hystrix -b 8771 -c 8771 -d eureka-client-hystrix
 #./deploylocal.sh -a eureka-ribbon-hystrix -b 8766 -c 8766 -d eureka-ribbon-hystrix
 #./deploylocal.sh -a eureka-feign-hystrix -b 8767 -c 8767 -d eureka-feign-hystrix
+
+
 #./deploylocal.sh -a eureka-zuul -b 8768 -c 8768 -d eureka-zuul
 #./deploylocal.sh -a eureka-config-server -b 8888 -c 8888 -d eureka-config-server
 #./deploylocal.sh -a eureka-config-server -b 8889 -c 8889 -d eureka-config-server1
 #./deploylocal.sh -a eureka-config-client -b 8769 -c 8769 -d eureka-config-client
 #./deploylocal.sh -a eureka-config-client -b 8770 -c 8770 -d eureka-config-client1
 #安装rabbitmq的docker指令 docker run --name rabbitmq-west -d -p 15672:15672 -p 5672:5672 -p 25672:25672 rabbitmq:3-management
+
 
 
 echo a:程序的名称
@@ -57,9 +61,7 @@ REMOTE_PATH_ROOT=/home/parallels/docker/spcloud
 REMOTE_PATH_PJ=$REMOTE_PATH_ROOT/$a
 REMOTE_PATH=parallels@10.211.55.5:$REMOTE_PATH_PJ
 
-PWD=mxhzmm123!@#
-USER=parallels
-IP=10.211.55.5
+
 
 echo web update
 cd $BASE_PATH
