@@ -11,3 +11,5 @@ server:
 spring:
   application:
     name: service-client
+  zipkin:
+    base-url: http://10.211.55.5:8773

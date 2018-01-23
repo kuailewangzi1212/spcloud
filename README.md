@@ -473,7 +473,6 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
 服务链路追踪，跟踪服务消费者的消费路径，方便分析和查找问题。
 
-
  **1、sleuth zipkin server**
  * **依赖**
 
@@ -516,18 +515,25 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
  **2、sleuth client**
   * **依赖**
  
-       
-  
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
   * **注解**     
   
    
          
   * **配置**
   
-   
+        spring.zipkin.base-url=http://10.211.55.5:8773 #zipkin server url  
  
   * **Usage** 
- 
+    测试用下面两个节点
+    
+        ./deploylocal.sh -a eureka-client -b 8762 -c 8762 -d eureka-client
+        ./deploylocal.sh -a eureka-ribbon-hystrix -b 8766 -c 8766 -d eureka-ribbon-hystrix    
+
 
 # monitor(Spring boot admin)
 
