@@ -31,6 +31,7 @@ echo a:程序的名称
 echo b:程序的端口
 echo c:映射到docker宿主的端口
 echo d:docker相关的名字
+echo e:运行jar包的命令行参数
 
 a=程序的名称
 b=程序的端口
