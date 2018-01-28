@@ -19,8 +19,8 @@ management:
 zuul:
   routes:
     api-a:
-      path: /api-ribbon/**
-      serviceId: service-ribbon
+      path: /api-a/**
+      serviceId: service-client
     api-b:
-      path: /api-feign/**
-      serviceId: service-feign
+      path: /api-b/**
+      serviceId: service-ribbon-hystrix
