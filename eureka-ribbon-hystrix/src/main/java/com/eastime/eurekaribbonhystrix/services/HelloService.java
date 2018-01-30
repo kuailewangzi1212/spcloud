@@ -13,6 +13,8 @@ public class HelloService {
 
     @HystrixCommand(fallbackMethod = "hiError")
     public String hiService(String name) {
+//        int a=1;
+//        int b=1/0;
         return restTemplate.getForObject("http://SERVICE-CLIENT/hi?name="+name,String.class);
     }
 
