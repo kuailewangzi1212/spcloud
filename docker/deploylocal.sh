@@ -26,6 +26,8 @@
 
 #./deploylocal.sh -a eureka-monitor -b 6789 -c 6789 -d eureka-monitor
 
+#./deploylocal.sh -a eureka-security -b 8774 -c 8774 -d eureka-security
+
 
 echo a:程序的名称
 echo b:程序的端口

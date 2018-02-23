@@ -715,3 +715,30 @@ hystrix实现了超时机制和断路器机制。负载均衡在不改变程序�
 
 
  * **Usage**   
+ 
+ 
+ # Spring cloud security
+ 
+  * **依赖**
+ 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+       
+  
+  * **注解**     
+  
+        无   
+         
+  * **配置**
+  
+    
+ 
+ 
+  * **Usage**   
+ 

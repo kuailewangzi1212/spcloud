@@ -40,6 +40,7 @@
 		<module>eureka-client-turbine</module>
 		<module>eureka-zipkin-server</module>
 		<module>eureka-monitor</module>
+		<module>eureka-security</module>
 	</modules>
 
 
