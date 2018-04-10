@@ -1,4 +1,4 @@
-docker rm -f $(docker ps -a -f name=eureka-client1 -q)
-docker rmi eureka-client1
-docker build -t eureka-client1:latest .
-docker run --name eureka-client1 -d -p 8763:8763 eureka-client1:latest
+docker rm -f $(docker ps -a -f name=eureka-client -q)
+docker rmi eureka-client
+docker build -t eureka-client:latest .
+docker run --name eureka-client -d -p 8762:8762 eureka-client:latest

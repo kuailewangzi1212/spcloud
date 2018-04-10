@@ -28,9 +28,6 @@
 
 #./deploylocal.sh -a eureka-security -b 8774 -c 8774 -d eureka-security
 
-#导入wsdl文件访问webservice
-#./deploylocal.sh -a eureka-client-webservice -b 8775 -c 8775 -d eureka-client-webservice
-
 
 echo a:程序的名称
 echo b:程序的端口
@@ -73,11 +70,14 @@ while getopts "a:,b:,c:,d:,e:" opt; do
   esac
 done
 
+REMOTE_IP=10.211.55.5
+REMOTE_USER=parallels
+REMOTE_PWD=mxhzmm123!@#
 BASE_PATH=/Users/mark/work/git/spclod/spcloud
 BASE_PATH_PJ=/Users/mark/work/git/spclod/spcloud/$a
 REMOTE_PATH_ROOT=/home/parallels/docker/spcloud
 REMOTE_PATH_PJ=$REMOTE_PATH_ROOT/$a
-REMOTE_PATH=parallels@10.211.55.5:$REMOTE_PATH_PJ
+REMOTE_PATH=parallels@$REMOTE_IP:$REMOTE_PATH_PJ
 
 
 
@@ -89,10 +89,10 @@ mvn clean install
 
 
 echo rm $a and mkdir $a
-sshpass -p "mxhzmm123!@#" ssh -p 22 parallels@10.211.55.5 "cd $REMOTE_PATH_ROOT ;rm -r -f $a ; mkdir $a"
+sshpass -p "$REMOTE_PWD" ssh -p 22 $REMOTE_USER@$REMOTE_IP "cd $REMOTE_PATH_ROOT ;rm -r -f $a ; mkdir $a"
 
 echo send jar
-sshpass -p "mxhzmm123!@#" scp -P 22 $BASE_PATH_PJ/target/$a-0.0.1-SNAPSHOT.jar $REMOTE_PATH/$a-0.0.1-SNAPSHOT.jar
+sshpass -p "$REMOTE_PWD" scp -P 22 $BASE_PATH_PJ/target/$a-0.0.1-SNAPSHOT.jar $REMOTE_PATH/$a-0.0.1-SNAPSHOT.jar
 
 
 echo create Dockerfile
@@ -108,7 +108,7 @@ echo EXPOSE $b >> Dockerfile
 
 
 echo send dockerfile
-sshpass -p "mxhzmm123!@#" scp -P 22 $BASE_PATH_PJ/Dockerfile $REMOTE_PATH/Dockerfile
+sshpass -p "$REMOTE_PWD" scp -P 22 $BASE_PATH_PJ/Dockerfile $REMOTE_PATH/Dockerfile
 
 echo create redocker.sh
 cd $BASE_PATH_PJ
@@ -119,12 +119,12 @@ echo docker build -t $d:latest . >> redocker.sh
 echo docker run --name $d -d -p $c:$b $d:latest >> redocker.sh
 
 echo send redocker.sh
-sshpass -p "mxhzmm123!@#" scp -P 22 $BASE_PATH_PJ/redocker.sh $REMOTE_PATH/redocker.sh
+sshpass -p "$REMOTE_PWD" scp -P 22 $BASE_PATH_PJ/redocker.sh $REMOTE_PATH/redocker.sh
 
 echo set promise redocker.sh
-sshpass -p "mxhzmm123!@#" ssh -p 22  parallels@10.211.55.5 "cd $REMOTE_PATH_PJ ; chmod +x ./redocker.sh"
+sshpass -p "$REMOTE_PWD" ssh -p 22  $REMOTE_USER@$REMOTE_IP "cd $REMOTE_PATH_PJ ; chmod +x ./redocker.sh"
 
 echo exec redocker.sh
-sshpass -p "mxhzmm123!@#" ssh -p 22  parallels@10.211.55.5 "cd $REMOTE_PATH_PJ ; ./redocker.sh"
+sshpass -p "$REMOTE_PWD" ssh -p 22  $REMOTE_USER@$REMOTE_IP "cd $REMOTE_PATH_PJ ; ./redocker.sh"
 
 echo $a ok.

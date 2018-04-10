@@ -41,6 +41,7 @@
 		<module>eureka-zipkin-server</module>
 		<module>eureka-monitor</module>
 		<module>eureka-security</module>
+		<module>eureka-client-webservice</module>
 	</modules>
 
 
